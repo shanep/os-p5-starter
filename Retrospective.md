@@ -3,18 +3,18 @@
 - name: TODO
 - email: TODO
 
-## Learning
+## Experience
 
-TODO - Detail one new thing that you learned when working on this project.
+TODO
 
 ## Known issues or Bugs
 
-TODO - Detail any bugs that you could not solve before the deadline.
+TODO
 
 ## Bugs fixed in the instructor provided code
 
-TODO - List all the bugs that you fixed in the starter code.
+TODO
 
 ## Sources used
 
-TODO - List any sources you used when working on this project.
+TODO
