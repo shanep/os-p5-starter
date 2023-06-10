@@ -30,51 +30,31 @@ Usage: myprogram [-c num consumer] [-p num producer] [-i num items] [-s queue si
 
 ## Task 2 - Analysis
 
-Analyze the efficiency of your implementation by examining how adding multiple
-producers and consumers compares to just one producer and one consumer. Include
-an ASCII histogram in the README.md showing the speedups obtained with varying
-number of threads (from 1 to 8) for both producer and consumer. Make sure and
-use the same [num items] each time so you can have a good baseline. Please note
-the number of cores on the system that you are testing as the hardware can have
-dramatic effects on multi-threaded code. You can get the number of cores on the
-system with `cat /proc/cpuinfo`.
+Once you have completed the implementing your code we want to analyze the
+impact of having different numbers of producers and consumers.
 
-Don’t make assumptions on what the analysis is supposed to look like! You may be
-surprised by the results! Below are some timing results from my solution to help
-point you in the right direction. You will need to run your program at least
-20-30 times and then **average** the results. If the server is under a lot of
-load your values could be impacted which is why you need to have multiple runs!
+I have provided you with a bash script `createplot.sh` and a gnuplot macro file
+named `graph.plt` what will generate a nice plot showing the differences when
+using a different number of producers and consumers. You will need to install
+[gnuplot](http://www.gnuplot.info/) on your machine to complete this task. If
+you can't or don't want to install gnuplot on your machine you can use one of
+the lab machines that has it already installed.
 
-```text
-$ time ./myprogram -c 8 -p 8 -i 10000 -s 100 &>> results.txt
-real 0m5.629s
-user 0m0.496s
-sys 0m0.827s
-$ time ./myprogram -c 7 -p 8 -i 10000 -s 100 &>> results.txt
-real 0m6.431s
-user 0m0.548s
-sys 0m1.010s
-$ time ./myprogram -c 6 -p 8 -i 10000 -s 100 &>> results.txt
-real 0m7.563s
-user 0m0.648s
-sys 0m1.306s
-$ time ./myprogram -c 5 -p 8 -i 10000 -s 100 &>> results.txt
-real 0m9.033s
-user 0m0.732s
-sys 0m1.479s
-$ time ./myprogram -c 8 -p 7 -i 10000 -s 100 &>> results.txt
-real 0m5.659s
-user 0m0.529s
-sys 0m0.980s
-$ time ./myprogram -c 8 -p 6 -i 10000 -s 100 &>> results.txt
-real 0m5.664s
-user 0m0.543s
-sys 0m1.044s
-$ time ./myprogram -c 8 -p 5 -i 10000 -s 100 &>> results.txt
-real 0m5.688s
-user 0m0.454s
-sys 0m0.944s
+Assuming that everything is working you can now generate your plot as follows:
+
+```bash
+$./createplot.sh -f student_plot -s 100
+Running myprogram to generate data
+Created plot student_plot.png from data.dat file
 ```
+
+After the script finishes you should see a new file named `student_plot.png`.
+You will need to add this to your retrospective. Your results will vary
+depending on your hardware and current system load however you should be
+able to produce something close. If your graph is not even close to the
+example below there may be a problem in your implementation.
+
+![example plot](example_plot.png)
 
 ## Task 3 - Stress test
 
@@ -87,7 +67,8 @@ of the OS level threads.
 You will need to implement a bash script named **stress.sh** that runs your
 program with different numbers of producers, consumers, items, and sizes to make
 sure you don't have any **race conditions** or deadlocks in your code. You can
-use the very simple example below as a starting point.
+use the very simple example below as a starting point you script will need to
+be more robust that what is shown below.
 
 ```bash
 $ while true
@@ -187,6 +168,11 @@ As an example:
 Once you have completed all the tasks open the file **Retrospective.md** and
 complete each section that has a TODO label. Reference the grading rubric
 for details on how this will be graded.
+
+In your retrospective you must include your graph as an image and then talk
+about the results. Were you able to generate something close to what the example
+showed? Why or why not. What can you say about how the number of producers and
+consumers impact performance.
 
 ## Task 6 - Add, Commit, Push your code
 
